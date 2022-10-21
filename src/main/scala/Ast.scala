@@ -1,18 +1,15 @@
 package fr.charlotte
-
-import Ast.*
-
-enum Ast:
-  case Str(s: String)
-  case AndOperator(f1: Ast, f2: Ast)
-  case OrOperator(f1: Ast, f2: Ast)
-  case NoOperator(f1: Ast)
+  enum AST:
+    case Str(s: String)
+    case AndOperator(f1: AST, f2: AST)
+    case OrOperator(f1: AST, f2: AST)
+    case NoOperator(f1: AST)
 
 
-def printFormula(t: Ast): String =
-  t match {
-    case Str(s) => s
-    case AndOperator(f1, f2) => "(" + printFormula(f1) + " ∧ " + printFormula(f2) + ")"
-    case OrOperator(f1, f2) => "(" + printFormula(f1) + " ∨ " + printFormula(f2) + ")"
-    case NoOperator(f1) => "(¬" + printFormula(f1) + ")"
-  }
+  def printFormula(t: AST): String =
+    t match {
+      case AST.Str(s) => s
+      case AST.AndOperator(f1, f2) => "(" + printFormula(f1) + " ∧ " + printFormula(f2) + ")"
+      case AST.OrOperator(f1, f2) => "(" + printFormula(f1) + " ∨ " + printFormula(f2) + ")"
+      case AST.NoOperator(f1) => "(¬" + printFormula(f1) + ")"
+    }
